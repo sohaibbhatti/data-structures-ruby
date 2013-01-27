@@ -9,12 +9,16 @@ class Node
     @value = _value
     @next  = _next
   end
+
+  def equals?(other_node)
+    (@value == other_node.value) && (@next == other_node.next)
+  end
 end
 
 class LinkedList
   attr_accessor :head
 
-  def initialize head=nil
+  def initialize(head=nil)
     @head = head
   end
 
@@ -39,17 +43,88 @@ class LinkedList
     match
   end
 
-  def print_node
+  # Returns an array representation of nodes in reverse
+  def reverse_traversal
+
+    #list_array = []
+
+    #curr_node = @head
+    #tail = print_nodes.last
+
+    #while curr_node do
+      #puts curr_node.value
+      #break if !list_array.empty? && list_array.last.equals?(@head)
+      #if curr_node.next.equals?(tail)
+        #list_array << curr_node
+        #curr_node = @head
+      #else
+        #curr_node = curr_node.next
+      #end
+    #end
+
+    #list_array.collect(&:value)
+  end
+
+  # Returns an array representation of nodes
+  def print_nodes
+    list_array = []
     curr_node = @head
     while curr_node do
-      puts curr_node.value
+      list_array << curr_node
       curr_node = curr_node.next
+    end
+
+    list_array
+  end
+end
+
+describe 'Node' do
+  let!(:node) { Node.new 1, nil }
+
+  describe 'equals?' do
+
+    context 'same' do
+      let(:new_node) { Node.new 1, nil}
+      specify { new_node.equals?(node).should be_true }
+    end
+
+    context 'different' do
+      let!(:dummy_node) { Node.new(1, nil) }
+      let(:new_node) { Node.new(1, dummy_node) }
+
+      it { new_node.equals?(node).should be_false }
     end
   end
 end
 
 describe 'LinkedList' do
   let(:list) { LinkedList.new }
+
+  describe '#print_nodes' do
+    subject { list.print_nodes.collect(&:value) }
+
+    context 'List empty' do
+      it { should == [] }
+    end
+
+    context 'List exists' do
+      before { list.add_node(5); list.add_node(4); list.add_node(3) }
+      it { should == [3, 4, 5] }
+    end
+  end
+
+  describe '#reverse_traversal' do
+    subject { list.reverse_traversal }
+
+    context 'List empty' do
+      it { should == [] }
+    end
+
+    context 'List exists' do
+      before { list.add_node(5); list.add_node(4); list.add_node(3) }
+      it { should == [5, 4, 3] }
+    end
+  end
 
   describe '#find_node' do
     subject {list.find_node 20}
