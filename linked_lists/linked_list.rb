@@ -45,28 +45,15 @@ class LinkedList
 
   # Returns an array representation of nodes in reverse
   def reverse_traversal
-
-    #list_array = []
-
-    #curr_node = @head
-    #tail = print_nodes.last
-
-    #while curr_node do
-      #puts curr_node.value
-      #break if !list_array.empty? && list_array.last.equals?(@head)
-      #if curr_node.next.equals?(tail)
-        #list_array << curr_node
-        #curr_node = @head
-      #else
-        #curr_node = curr_node.next
-      #end
-    #end
-
-    #list_array.collect(&:value)
+    list_array = []
+    recurse_reverse(@head)do |val|
+      list_array << val
+    end
+    list_array
   end
 
   # Returns an array representation of nodes
-  def print_nodes
+  def traversal
     list_array = []
     curr_node = @head
     while curr_node do
@@ -75,6 +62,15 @@ class LinkedList
     end
 
     list_array
+  end
+
+  private
+
+  def recurse_reverse(curr_node = @head, &blk)
+    if curr_node
+      recurse_reverse curr_node.next, &blk
+      blk.call(curr_node)
+    end
   end
 end
 
@@ -100,8 +96,8 @@ end
 describe 'LinkedList' do
   let(:list) { LinkedList.new }
 
-  describe '#print_nodes' do
-    subject { list.print_nodes.collect(&:value) }
+  describe '#traversal' do
+    subject { list.traversal.collect(&:value) }
 
     context 'List empty' do
       it { should == [] }
@@ -114,7 +110,7 @@ describe 'LinkedList' do
   end
 
   describe '#reverse_traversal' do
-    subject { list.reverse_traversal }
+    subject { list.reverse_traversal.collect(&:value) }
 
     context 'List empty' do
       it { should == [] }
