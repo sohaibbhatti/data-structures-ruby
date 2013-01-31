@@ -33,7 +33,22 @@ class LinkedList
 
   # Deletes a node if its present in the linked list
   def delete_node(value)
+    return false unless @head
+    curr_node = @head
 
+    if @head.value == value
+      @head = @head.next
+      return true
+    end
+
+    while curr_node.next
+      if value == curr_node.next.value
+        curr_node.next = curr_node.next.next
+        return true
+      else
+        curr_node = curr_node.next
+      end
+    end
   end
 
   def find_node(value)
@@ -101,19 +116,41 @@ end
 describe 'LinkedList' do
   let(:list) { LinkedList.new }
 
-  descrive '#delete_node' do
-    subject { list.delete_node }
+  describe '#delete_node' do
+    subject { list.delete_node(10) }
+
     context 'List empty' do
       it { should be_false }
     end
 
     context 'List exists' do
-      context 'Node present' do
 
+      context 'Node present at the start of list' do
+        before { list.add_node(5); list.add_node(4); list.add_node(3); list.add_node(10) }
+
+        it { should be_true }
+        specify { subject; list.traversal.collect(&:value).should == [3, 4, 5] }
+      end
+
+      context 'Node present in middle of list' do
+        before { list.add_node(5); list.add_node(4); list.add_node(10); list.add_node(3) }
+
+        it { should be_true }
+        specify { subject; list.traversal.collect(&:value).should == [3, 4, 5] }
+      end
+
+      context 'Node present at the end of list' do
+        before { list.add_node(10); list.add_node(5); list.add_node(4); list.add_node(3) }
+
+        it { should be_true }
+        specify { subject; list.traversal.collect(&:value).should == [3, 4, 5] }
       end
 
       context 'Node not found' do
+        before { list.add_node(5); list.add_node(4); list.add_node(3) }
 
+        it { should be_false }
+        specify { subject; list.traversal.collect(&:value).should == [3, 4, 5] }
       end
     end
   end
