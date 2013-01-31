@@ -31,6 +31,11 @@ class LinkedList
     end
   end
 
+  # Deletes a node if its present in the linked list
+  def delete_node(value)
+
+  end
+
   def find_node(value)
     return false if @head.nil?
     curr_node = @head
@@ -95,6 +100,23 @@ end
 
 describe 'LinkedList' do
   let(:list) { LinkedList.new }
+
+  descrive '#delete_node' do
+    subject { list.delete_node }
+    context 'List empty' do
+      it { should be_false }
+    end
+
+    context 'List exists' do
+      context 'Node present' do
+
+      end
+
+      context 'Node not found' do
+
+      end
+    end
+  end
 
   describe '#traversal' do
     subject { list.traversal.collect(&:value) }
