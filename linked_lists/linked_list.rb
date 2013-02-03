@@ -49,6 +49,8 @@ class LinkedList
     end
   end
 
+  # Returns true if node exists
+  # Else returns false
   def find_node(value)
     return false if @head.nil?
     curr_node = @head

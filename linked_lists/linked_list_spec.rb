@@ -1,5 +1,5 @@
 require 'rspec'
-require './linked_list'
+require_relative 'linked_list'
 
 describe 'Node' do
   let!(:node) { Node.new 1, nil }

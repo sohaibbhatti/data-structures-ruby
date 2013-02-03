@@ -1,17 +1,26 @@
 data-structures-ruby
 ====================
 
-Going about implementing common datastructures to revise concepts. Generally basic specs of the data structure should be present at the bottom of the file. These specs do not ensure code completeness. They merely serve as a means for coding ease. 
+Going about implementing common datastructures to revise concepts. Test case coverage is present in files with suffix '_spec.rb'. These specs do not ensure code completeness. They merely serve as a means for coding ease. 
 
 ### Data Structures Implemented
- * Look away :P
+ * Linked List
+   - Insert Node
+   - Delete Node
+   - Search Node
+   - Traverse Nodes
+   - Reverse Traversal of Nodes
  
  
 ### Data Structures In progress
- * Linked List
-   - Delete Functionality
-   - Readme pending
-   - Tutorial pending
+ * Binary Search Tree
+   - Insert Node
+   - Delete Node
+   - Find Minimum
+   - Find Maximum
+   - Pre order traversal
+   - Post order traversal
+   - Traversal
 
 ### Data Structures Pipe Line
  * Stack
