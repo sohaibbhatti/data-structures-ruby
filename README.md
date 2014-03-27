@@ -11,8 +11,8 @@ Going about implementing common datastructures to revise concepts. Test case cov
    - Traverse Nodes
    - Reverse Traversal of Nodes
 
-  * Stacks
-    - Using an array to manage two stacks
+ * Stacks
+   - Using an array to manage two stacks
 
 
   ### Data Structures In progress
