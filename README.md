@@ -10,9 +10,12 @@ Going about implementing common datastructures to revise concepts. Test case cov
    - Search Node
    - Traverse Nodes
    - Reverse Traversal of Nodes
- 
- 
-### Data Structures In progress
+
+  * Stacks
+    - Using an array to manage two stacks
+
+
+  ### Data Structures In progress
  * Binary Search Tree
    - Insert Node
    - Delete Node
