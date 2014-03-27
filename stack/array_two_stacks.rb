@@ -43,23 +43,19 @@ class Stack
 
   def pop(stack_num)
     if stack_num == 1
-      if @array[@stack_one_top] == nil
-        raise 'Underflow'
-      else
-        x = @array[@stack_one_top]
-        @array[@stack_one_top] = nil
-        @stack_one_top -= 1 if @stack_one_top > 0
-        return x
-      end
+      detect_underflow(stack_num)
+
+      x = @array[@stack_one_top]
+      @array[@stack_one_top] = nil
+      @stack_one_top -= 1 if @stack_one_top > 0
+      return x
     elsif stack_num == 2
-      if @array[@stack_two_top] == nil
-        raise 'Underflow'
-      else
-        x = @array[@stack_two_top]
-        @array[@stack_two_top] = nil
-        @stack_two_top += 1 if (@stack_two_top < @array.length - 1)
-        return x
-      end
+      detect_underflow(stack_num)
+
+      x = @array[@stack_two_top]
+      @array[@stack_two_top] = nil
+      @stack_two_top += 1 if (@stack_two_top < @array.length - 1)
+      return x
     else
       raise ArgumentError('invalid stack number passed')
     end
@@ -72,7 +68,7 @@ class Stack
   end
 
   def detect_underflow(stack_num)
-    if (stack_num == 1 && @array[@stack_one_top].nil?) || (stack_num == 2 && @array[@stack_one_top].nil?)
+    if (stack_num == 1 && @array[@stack_one_top].nil?) || (stack_num == 2 && @array[@stack_two_top].nil?)
       raise 'Underflow'
     end
   end
